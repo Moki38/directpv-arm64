@@ -1,0 +1,9 @@
+cluster:
+    apiServer:
+        admissionControl:
+            - name: PodSecurity # Name is the name of the admission controller.
+              configuration:
+                exemptions:
+                    namespaces:
+                        - directpv
+
