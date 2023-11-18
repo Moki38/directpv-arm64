@@ -73,7 +73,7 @@ quay.io/minio/csi-resizer:v1.8.0
 quay.io/minio/directpv:latest or quay.io/minio/directpv:v4.0.9-arm64
 ```
 #
-# What i build/reverse enigneerd/tinkerd
+# What i build/reverse-enigneered/tinkerd
 #
 ``` 
 podman login docker.io
@@ -149,7 +149,8 @@ NAME                                    DESIRED   CURRENT   READY   AGE
 replicaset.apps/controller-85df994996   3         3         0       32s
 ```
 #
-# DirectPV (https://min.io/directpv)
+# DirectPV 
+(https://min.io/directpv)
 #
 ```
 # kubectl directpv info
@@ -265,7 +266,8 @@ ERROR Initializing the drives will permanently erase existing data. Please revie
 0 B/8.2 TiB used, 0 volumes, 9 drives
 ```
 
-# Install minio operator (https://min.io/docs/minio/kubernetes/upstream/operations/install-deploy-manage/deploy-operator-helm.html)
+# Install minio operator 
+(https://min.io/docs/minio/kubernetes/upstream/operations/install-deploy-manage/deploy-operator-helm.html)
 ```
 helm repo add minio https://operator.min.io/
 helm upgrade --install --namespace minio-operator --create-namespace minio-operator minio/operator --values operator-values.yaml
