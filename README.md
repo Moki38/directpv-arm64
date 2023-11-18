@@ -143,4 +143,102 @@ deployment.apps/controller   0/3     3            0           32s
 NAME                                    DESIRED   CURRENT   READY   AGE
 replicaset.apps/controller-85df994996   3         3         0       32s
 ````
+#
+# DiectPV
+#
+```
+# kubectl directpv info
+┌──────────┬──────────┬───────────┬─────────┬────────┐
+│ NODE     │ CAPACITY │ ALLOCATED │ VOLUMES │ DRIVES │
+├──────────┼──────────┼───────────┼─────────┼────────┤
+│ • node11 │ -        │ -         │ -       │ -      │
+│ • node12 │ -        │ -         │ -       │ -      │
+│ • node13 │ -        │ -         │ -       │ -      │
+│ • node14 │ -        │ -         │ -       │ -      │
+│ • node15 │ -        │ -         │ -       │ -      │
+│ • node16 │ -        │ -         │ -       │ -      │
+│ • node21 │ -        │ -         │ -       │ -      │
+│ • node22 │ -        │ -         │ -       │ -      │
+│ • node23 │ -        │ -         │ -       │ -      │
+└──────────┴──────────┴───────────┴─────────┴────────┘
+# kubectl directpv discover
 
+ Discovered node 'node23' ✔
+ Discovered node 'node12' ✔
+ Discovered node 'node13' ✔
+ Discovered node 'node15' ✔
+ Discovered node 'node16' ✔
+ Discovered node 'node21' ✔
+ Discovered node 'node22' ✔
+ Discovered node 'node11' ✔
+ Discovered node 'node14' ✔
+
+┌─────────────────────┬────────┬───────────┬──────────┬────────────────┬─────────────────────────┬───────────┬─────────────┐
+│ ID                  │ NODE   │ DRIVE     │ SIZE     │ FILESYSTEM     │ MAKE                    │ AVAILABLE │ DESCRIPTION │
+├─────────────────────┼────────┼───────────┼──────────┼────────────────┼─────────────────────────┼───────────┼─────────────┤
+│ 179:3$kXURoSnXZS... │ node11 │ mmcblk0p3 │ 1000 MiB │ xfs            │ (Part 3)                │ YES       │ -           │
+│ 259:0$S2yueNJpQA... │ node11 │ nvme0n1   │ 932 GiB  │ ceph_bluestore │ Samsung SSD 980 PRO 1TB │ YES       │ -           │
+│ 179:3$f3W1yP6l4P... │ node12 │ mmcblk0p3 │ 1000 MiB │ xfs            │ (Part 3)                │ YES       │ -           │
+│ 259:0$qmIF1bbaun... │ node12 │ nvme0n1   │ 932 GiB  │ ceph_bluestore │ Samsung SSD 980 PRO 1TB │ YES       │ -           │
+│ 179:3$ixCm8ycERB... │ node13 │ mmcblk0p3 │ 1000 MiB │ xfs            │ (Part 3)                │ YES       │ -           │
+│ 259:0$mn43JEuIWt... │ node13 │ nvme0n1   │ 932 GiB  │ ceph_bluestore │ Samsung SSD 980 PRO 1TB │ YES       │ -           │
+│ 179:3$MaWGh/vWL8... │ node14 │ mmcblk0p3 │ 1000 MiB │ xfs            │ (Part 3)                │ YES       │ -           │
+│ 259:0$9G5nze9Nkl... │ node14 │ nvme0n1   │ 932 GiB  │ ceph_bluestore │ Samsung SSD 980 PRO 1TB │ YES       │ -           │
+│ 179:3$/0mfwAxpXU... │ node15 │ mmcblk0p3 │ 1000 MiB │ xfs            │ (Part 3)                │ YES       │ -           │
+│ 259:0$gUIcbJPPJn... │ node15 │ nvme0n1   │ 932 GiB  │ ceph_bluestore │ Samsung SSD 980 PRO 1TB │ YES       │ -           │
+│ 179:3$ibQZ5HrUsN... │ node16 │ mmcblk0p3 │ 1000 MiB │ xfs            │ (Part 3)                │ YES       │ -           │
+│ 259:0$88ELlAGAC4... │ node16 │ nvme0n1   │ 932 GiB  │ ceph_bluestore │ Samsung SSD 980 PRO 1TB │ YES       │ -           │
+│ 179:3$v1F46Q3qHy... │ node21 │ mmcblk0p3 │ 1000 MiB │ xfs            │ (Part 3)                │ YES       │ -           │
+│ 259:0$vv5p5MOV/u... │ node21 │ nvme0n1   │ 932 GiB  │ ceph_bluestore │ Samsung SSD 980 PRO 1TB │ YES       │ -           │
+│ 179:3$XQC2bAgcw1... │ node22 │ mmcblk0p3 │ 1000 MiB │ xfs            │ (Part 3)                │ YES       │ -           │
+│ 259:0$wDqhFHZjJH... │ node22 │ nvme0n1   │ 932 GiB  │ ceph_bluestore │ Samsung SSD 980 PRO 1TB │ YES       │ -           │
+│ 179:3$DOobGdpTs/... │ node23 │ mmcblk0p3 │ 1000 MiB │ xfs            │ (Part 3)                │ YES       │ -           │
+│ 259:0$f8I0b8Wq4W... │ node23 │ nvme0n1   │ 932 GiB  │ ceph_bluestore │ Samsung SSD 980 PRO 1TB │ YES       │ -           │
+└─────────────────────┴────────┴───────────┴──────────┴────────────────┴─────────────────────────┴───────────┴─────────────┘
+
+Generated 'drives.yaml' successfully.
+# vi drives.yaml
+# kubectl directpv init drives.yaml
+ERROR Initializing the drives will permanently erase existing data. Please review carefully before performing this *DANGEROUS* operation and retry this command with --dangerous flag.
+# kubectl directpv init drives.yaml --dangerous
+
+ ███████████████████████████████████████████████████████████████████████████ 100%
+
+ Processed initialization request '58e50fa4-5344-4782-be93-7e199d677da7' for node 'node23' ✔
+ Processed initialization request 'c8991dc4-1f98-47f9-9f53-d38e312e2f1d' for node 'node13' ✔
+ Processed initialization request '71ab740e-7a9c-4a68-a7f4-a1a08b643856' for node 'node14' ✔
+ Processed initialization request '33fd3fd3-d34e-47ff-9f76-669ccbe2abd0' for node 'node15' ✔
+ Processed initialization request '6e0210f1-2744-4d4c-8803-3910d129c219' for node 'node12' ✔
+ Processed initialization request 'a9118beb-b9e3-4beb-a15a-2ae7eb05a265' for node 'node21' ✔
+ Processed initialization request 'b8a801ec-cada-40ca-9f4f-356dde9c3c36' for node 'node22' ✔
+ Processed initialization request 'b0a08aac-5993-430f-b90b-eef27f020991' for node 'node11' ✔
+ Processed initialization request 'a617ad99-4a8c-4ee3-9254-c809d670deef' for node 'node16' ✔
+
+┌──────────────────────────────────────┬────────┬─────────┬─────────┐
+│ REQUEST_ID                           │ NODE   │ DRIVE   │ MESSAGE │
+├──────────────────────────────────────┼────────┼─────────┼─────────┤
+│ b0a08aac-5993-430f-b90b-eef27f020991 │ node11 │ nvme0n1 │ Success │
+│ 6e0210f1-2744-4d4c-8803-3910d129c219 │ node12 │ nvme0n1 │ Success │
+│ c8991dc4-1f98-47f9-9f53-d38e312e2f1d │ node13 │ nvme0n1 │ Success │
+│ 71ab740e-7a9c-4a68-a7f4-a1a08b643856 │ node14 │ nvme0n1 │ Success │
+│ 33fd3fd3-d34e-47ff-9f76-669ccbe2abd0 │ node15 │ nvme0n1 │ Success │
+│ a617ad99-4a8c-4ee3-9254-c809d670deef │ node16 │ nvme0n1 │ Success │
+│ a9118beb-b9e3-4beb-a15a-2ae7eb05a265 │ node21 │ nvme0n1 │ Success │
+│ b8a801ec-cada-40ca-9f4f-356dde9c3c36 │ node22 │ nvme0n1 │ Success │
+│ 58e50fa4-5344-4782-be93-7e199d677da7 │ node23 │ nvme0n1 │ Success │
+└──────────────────────────────────────┴────────┴─────────┴─────────┘
+# kubectl directpv list drives
+┌────────┬─────────┬─────────────────────────┬─────────┬─────────┬─────────┬────────┐
+│ NODE   │ NAME    │ MAKE                    │ SIZE    │ FREE    │ VOLUMES │ STATUS │
+├────────┼─────────┼─────────────────────────┼─────────┼─────────┼─────────┼────────┤
+│ node11 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node12 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node13 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node14 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node15 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node16 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node21 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node22 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node23 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+└────────┴─────────┴─────────────────────────┴─────────┴─────────┴─────────┴────────┘
+```

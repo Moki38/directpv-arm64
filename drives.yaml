@@ -1,0 +1,74 @@
+version: v1
+nodes:
+    - name: node13
+      drives:
+        - id: 259:0$mn43JEuIWtEKtL+B0b1PBoj28FvJzofR/ftUFIbTqNQ=
+          name: nvme0n1
+          size: 1000204886016
+          make: Samsung SSD 980 PRO 1TB
+          fs: ceph_bluestore
+          select: "yes"
+    - name: node14
+      drives:
+        - id: 259:0$9G5nze9NklOp/9Etost38MVsIAwh9QjFTTczEo0EBKM=
+          name: nvme0n1
+          size: 1000204886016
+          make: Samsung SSD 980 PRO 1TB
+          fs: ceph_bluestore
+          select: "yes"
+    - name: node15
+      drives:
+        - id: 259:0$gUIcbJPPJn96dP/HaJrQo5851xmw6fuXdBFnYOdrjvk=
+          name: nvme0n1
+          size: 1000204886016
+          make: Samsung SSD 980 PRO 1TB
+          fs: ceph_bluestore
+          select: "yes"
+    - name: node21
+      drives:
+        - id: 259:0$vv5p5MOV/uDWxhpWjDk6VxT3ZqguWC01uPihYoBNd/g=
+          name: nvme0n1
+          size: 1000204886016
+          make: Samsung SSD 980 PRO 1TB
+          fs: ceph_bluestore
+          select: "yes"
+    - name: node22
+      drives:
+        - id: 259:0$wDqhFHZjJHpUBIOcBWnOH72/7w2RktRc4zOC0de7KC4=
+          name: nvme0n1
+          size: 1000204886016
+          make: Samsung SSD 980 PRO 1TB
+          fs: ceph_bluestore
+          select: "yes"
+    - name: node11
+      drives:
+        - id: 259:0$S2yueNJpQAwiYW/eY22Zizv9zAF5anFTFzvLWXPdkrQ=
+          name: nvme0n1
+          size: 1000204886016
+          make: Samsung SSD 980 PRO 1TB
+          fs: ceph_bluestore
+          select: "yes"
+    - name: node12
+      drives:
+        - id: 259:0$qmIF1bbaun0EGHr7b33akJPkwVd16cSdKtZvQH6AA/E=
+          name: nvme0n1
+          size: 1000204886016
+          make: Samsung SSD 980 PRO 1TB
+          fs: ceph_bluestore
+          select: "yes"
+    - name: node16
+      drives:
+        - id: 259:0$88ELlAGAC4zv+QDTuP1orxO2xfOSrRdnylOPzrzzGRk=
+          name: nvme0n1
+          size: 1000204886016
+          make: Samsung SSD 980 PRO 1TB
+          fs: ceph_bluestore
+          select: "yes"
+    - name: node23
+      drives:
+        - id: 259:0$f8I0b8Wq4WwwHnfaE4PvNrae12eeHU9JXFZ4xJ/+0bY=
+          name: nvme0n1
+          size: 1000204886016
+          make: Samsung SSD 980 PRO 1TB
+          fs: ceph_bluestore
+          select: "yes"
