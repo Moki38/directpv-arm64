@@ -7,6 +7,60 @@
 # What i had, but didn't work.
 #
 ```
+kubectl directpv install
+
+ ███████████████████████████████████████████████████████████████████████████ 100%
+
+┌──────────────────────────────────────┬──────────────────────────┐
+│ NAME                                 │ KIND                     │
+├──────────────────────────────────────┼──────────────────────────┤
+│ directpv                             │ Namespace                │
+│ directpv-min-io                      │ ServiceAccount           │
+│ directpv-min-io                      │ ClusterRole              │
+│ directpv-min-io                      │ ClusterRoleBinding       │
+│ directpv-min-io                      │ Role                     │
+│ directpv-min-io                      │ RoleBinding              │
+│ directpvdrives.directpv.min.io       │ CustomResourceDefinition │
+│ directpvvolumes.directpv.min.io      │ CustomResourceDefinition │
+│ directpvnodes.directpv.min.io        │ CustomResourceDefinition │
+│ directpvinitrequests.directpv.min.io │ CustomResourceDefinition │
+│ directpv-min-io                      │ CSIDriver                │
+│ directpv-min-io                      │ StorageClass             │
+│ node-server                          │ Daemonset                │
+│ controller                           │ Deployment               │
+└──────────────────────────────────────┴──────────────────────────┘
+
+DirectPV installed successfully
+
+# kubectl get all -n directpv
+NAME                              READY   STATUS             RESTARTS      AGE
+pod/controller-545d766d46-fvmmw   0/3     CrashLoopBackOff   2 (16s ago)   19s
+pod/controller-545d766d46-lbbth   0/3     CrashLoopBackOff   2 (14s ago)   19s
+pod/controller-545d766d46-r7bqb   0/3     CrashLoopBackOff   2 (15s ago)   19s
+pod/node-server-9tcg5             1/4     CrashLoopBackOff   2 (13s ago)   19s
+pod/node-server-dz56k             1/4     Error              4 (16s ago)   19s
+pod/node-server-fmd4b             1/4     CrashLoopBackOff   2 (15s ago)   19s
+pod/node-server-hfdkp             1/4     CrashLoopBackOff   2 (16s ago)   20s
+pod/node-server-hgb5w             1/4     Error              4 (16s ago)   20s
+pod/node-server-p9qth             1/4     CrashLoopBackOff   2 (14s ago)   19s
+pod/node-server-pprp7             1/4     CrashLoopBackOff   2 (15s ago)   20s
+pod/node-server-wjp8x             1/4     Error              4 (16s ago)   19s
+pod/node-server-xf55q             1/4     CrashLoopBackOff   2 (16s ago)   19s
+
+NAME                         DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+daemonset.apps/node-server   9         9         0       9            0           <none>          20s
+
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/controller   0/3     3            0           20s
+
+NAME                                    DESIRED   CURRENT   READY   AGE
+replicaset.apps/controller-545d766d46   3         3         0       20s
+
+kubectl logs -n directpv pod/node-server-hfdkp
+Defaulted container "node-driver-registrar" out of: node-driver-registrar, node-server, node-controller, liveness-probe
+exec /csi-node-driver-registrar: exec format error
+
+# Images
 quay.io/minio/csi-node-driver-registrar:v2.8.0
 quay.io/minio/csi-provisioner:v3.5.0
 quay.io/minio/livenessprobe:v2.10.0
@@ -15,7 +69,6 @@ quay.io/minio/directpv:latest or quay.io/minio/directpv:v4.0.9-arm64
 ```
 #
 # What i build/reverse enigneerd/tinkerd
-#
 #
 ``` 
 podman login docker.io
@@ -55,10 +108,6 @@ image="quay.io/minio/directpv:v4.0.9-arm64"
 podman pull $image
 podman tag $image `echo $image | sed -E 's#^[^/]+/#moki38/#'`
 podman push `echo $image | sed -E 's#^[^/]+/#moki38/#'`
-podman tag $image `echo $image | sed -E 's#^[^/]+/#registry.belni.local:5000/#'`
-podman push `echo $image | sed -E 's#^[^/]+/#registry.belni.local:5000/#'`
-
-podman push moki38/directpv:v4.0.9-arm64
 ```
 
 #
