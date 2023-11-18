@@ -76,7 +76,7 @@ Username: moki38
 Password:
 Login Succeeded!
 
-https://github.com/kubernetes-csi/livenessprobe.git
+git clone https://github.com/kubernetes-csi/livenessprobe.git
 make
 cp Dockerfile Containerfile
 podman build -t moki38/livenessprobe:latest -t moki38/livenessprobe:v2.11.0 .
@@ -90,14 +90,14 @@ podman build -t moki38/csi-node-driver-registrar:latest -t moki38/csi-node-drive
 podman image push moki38/csi-node-driver-registrar:latest
 podman image push moki38/csi-node-driver-registrar:v2.9.1
 
-https://github.com/kubernetes-csi/external-provisioner.git
+git clone https://github.com/kubernetes-csi/external-provisioner.git
 make
 cp Dockerfile Containerfile
 podman build -t moki38/csi-provisioner:latest -t moki38/csi-provisioner:v3.6.2 .
 podman image push moki38/csi-provisioner:latest
 podman image push moki38/csi-provisioner:v3.6.2
 
-https://github.com/kubernetes-csi/external-resizer.git
+git clone https://github.com/kubernetes-csi/external-resizer.git
 make
 cp Dockerfile Containerfile
 podman build -t moki38/csi-resizer:latest -t moki38/csi-resizer:v1.9.2 .
@@ -139,8 +139,8 @@ daemonset.apps/node-server   9         9         0       9            0         
 
 NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/controller   0/3     3            0           32s
-```
+
 NAME                                    DESIRED   CURRENT   READY   AGE
 replicaset.apps/controller-85df994996   3         3         0       32s
-
+````
 
