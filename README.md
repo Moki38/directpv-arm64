@@ -5,7 +5,7 @@ Just my journey in to DirectPV
 
 Hardware:
  12 Nodes Kubernetes Talos ARM64 Cluster, running on Raspberrry PI CM4 8Gb/32Gb eMMC (3 control nodes / 9 storage nodes with 1Tb NVME storage)
-
+```
 # Just my work on getting DirectPV working on my ARM64 Kubernetes cluster (Might not work)
 
 #
@@ -119,7 +119,7 @@ podman push `echo $image | sed -E 's#^[^/]+/#moki38/#'`
 # Where i am
 #
 ```
-kubectl create  -f directpv-install.yaml
+kubectl create -f directpv-install.yaml
 ```
 
 ```
@@ -147,7 +147,7 @@ deployment.apps/controller   0/3     3            0           32s
 
 NAME                                    DESIRED   CURRENT   READY   AGE
 replicaset.apps/controller-85df994996   3         3         0       32s
-````
+```
 #
 # DirectPV (https://min.io/directpv)
 #
@@ -263,4 +263,29 @@ ERROR Initializing the drives will permanently erase existing data. Please revie
 └──────────┴──────────┴───────────┴─────────┴────────┘
 
 0 B/8.2 TiB used, 0 volumes, 9 drives
+```
+
+# Install minio operator (https://min.io/docs/minio/kubernetes/upstream/operations/install-deploy-manage/deploy-operator-helm.html)
+```
+helm repo add minio https://operator.min.io/
+helm upgrade --install --namespace minio-operator --create-namespace minio-operator minio/operator --values operator-values.yaml
+```
+
+# Works for me ;)
+
+```
+# kubectl directpv list drives
+┌────────┬─────────┬─────────────────────────┬─────────┬─────────┬─────────┬────────┐
+│ NODE   │ NAME    │ MAKE                    │ SIZE    │ FREE    │ VOLUMES │ STATUS │
+├────────┼─────────┼─────────────────────────┼─────────┼─────────┼─────────┼────────┤
+│ node11 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 675 GiB │ 4       │ Ready  │
+│ node12 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 675 GiB │ 4       │ Ready  │
+│ node13 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node14 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 675 GiB │ 4       │ Ready  │
+│ node15 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node16 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node21 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+│ node22 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 675 GiB │ 4       │ Ready  │
+│ node23 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
+└────────┴─────────┴─────────────────────────┴─────────┴─────────┴─────────┴────────┘
 ```
