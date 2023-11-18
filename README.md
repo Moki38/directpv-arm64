@@ -1,5 +1,10 @@
 # DirectPV ARM64
 
+```
+Just my journey in to DirectPV 
+
+Hardware:
+ 12 Nodes Kubernetes Talos ARM64 Cluster, running on Raspberrry PI CM4 8Gb/32Gb eMMC (3 control nodes / 9 storage nodes with 1Tb NVME storage)
 
 # Just my work on getting DirectPV working on my ARM64 Kubernetes cluster (Might not work)
 
@@ -144,7 +149,7 @@ NAME                                    DESIRED   CURRENT   READY   AGE
 replicaset.apps/controller-85df994996   3         3         0       32s
 ````
 #
-# DiectPV
+# DirectPV (https://min.io/directpv)
 #
 ```
 # kubectl directpv info
@@ -241,4 +246,21 @@ ERROR Initializing the drives will permanently erase existing data. Please revie
 │ node22 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
 │ node23 │ nvme0n1 │ Samsung SSD 980 PRO 1TB │ 932 GiB │ 931 GiB │ -       │ Ready  │
 └────────┴─────────┴─────────────────────────┴─────────┴─────────┴─────────┴────────┘
+
+# kubectl directpv info
+┌──────────┬──────────┬───────────┬─────────┬────────┐
+│ NODE     │ CAPACITY │ ALLOCATED │ VOLUMES │ DRIVES │
+├──────────┼──────────┼───────────┼─────────┼────────┤
+│ • node11 │ 932 GiB  │ 0 B       │ 0       │ 1      │
+│ • node12 │ 932 GiB  │ 0 B       │ 0       │ 1      │
+│ • node13 │ 932 GiB  │ 0 B       │ 0       │ 1      │
+│ • node14 │ 932 GiB  │ 0 B       │ 0       │ 1      │
+│ • node15 │ 932 GiB  │ 0 B       │ 0       │ 1      │
+│ • node16 │ 932 GiB  │ 0 B       │ 0       │ 1      │
+│ • node21 │ 932 GiB  │ 0 B       │ 0       │ 1      │
+│ • node22 │ 932 GiB  │ 0 B       │ 0       │ 1      │
+│ • node23 │ 932 GiB  │ 0 B       │ 0       │ 1      │
+└──────────┴──────────┴───────────┴─────────┴────────┘
+
+0 B/8.2 TiB used, 0 volumes, 9 drives
 ```
